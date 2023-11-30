@@ -1,0 +1,30 @@
+namespace: wavy-curvey-blobby-website
+
+static-backgrounds:
+  defines: runnable
+  metadata:
+    name: static-backgrounds
+    description: >-
+      A static website with examples of backgrounds with curves, waves, and
+      blobs.
+    icon: https://emojiapi.dev/api/v1/robot.svg
+  containers:
+    static-backgrounds:
+      image: env-3082.registry.local/static-backgrounds:main-86203a0
+      build: .
+      dockerfile: Dockerfile.static-backgrounds
+  services:
+    http:
+      description: HTTP web server port
+      container: static-backgrounds
+      port: 80
+      host-port: 80
+      publish: true
+      protocol: tcp
+  connections: {}
+  variables: {}
+
+stack:
+  defines: group
+  members:
+    - wavy-curvey-blobby-website/static-backgrounds
