@@ -1,0 +1,34 @@
+namespace: wavy-curvey-blobby-website
+
+static-website:
+  defines: runnable
+  metadata:
+    name: static-website
+    description: A static website with various background designs and animations.
+    icon: https://emojiapi.dev/api/v1/globe_with_meridians.svg
+  containers:
+    static-website:
+      image: env-5028.registry.local/static-website:main-rr7z10
+      build: .
+      dockerfile: Dockerfile.static-website
+  services:
+    http:
+      description: HTTP protocol for serving the static website
+      container: static-website
+      port: 80
+      host-port: 80
+      publish: true
+      protocol: tcp
+  connections: {}
+  variables: {}
+
+stack:
+  defines: group
+  members:
+    - wavy-curvey-blobby-website/static-website
+  metadata:
+    name: curves-waves-blobs
+    description: >-
+      A static website showcasing different background designs with curves,
+      waves, and blobs.
+    icon: https://emojiapi.dev/api/v1/globe_with_meridians.svg
